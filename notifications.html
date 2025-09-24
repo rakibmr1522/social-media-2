@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>CSTbook Notifications</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #e4e6eb;
+}
+
+/* ===== Main Header (Profile Page Header) ===== */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px 50px;
+    background: rgba(32,34,37,0.95);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+/* ===== Logo ===== */
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo img {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,200,255,0.7);
+}
+.logo h1 {
+    font-size: 28px;
+    margin: 0;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00d4ff, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    user-select: none;
+}
+
+/* ===== Center Icons ===== */
+.nav {
+    display: flex;
+    gap: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.icon-wrapper img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s, filter 0.3s;
+    filter: brightness(0) saturate(100%) invert(57%) sepia(0%) saturate(0%) hue-rotate(174deg) brightness(57%) contrast(89%);
+}
+.icon-wrapper img:hover {
+    transform: scale(1.2);
+    filter: brightness(0) saturate(100%) invert(67%) sepia(87%) saturate(2972%) hue-rotate(179deg) brightness(102%) contrast(105%);
+}
+
+/* Tooltip */
+.tooltip {
+    visibility: hidden;
+    width: max-content;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 8px;
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+.icon-wrapper:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ===== Notifications Page Header ===== */
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #0f2027;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.notifications-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+.notifications-header .header-icons {
+    display: flex;
+    gap: 15px;
+}
+.notifications-header img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(57%) sepia(0%) saturate(0%) hue-rotate(174deg) brightness(57%) contrast(89%);
+}
+
+/* ===== Notification List ===== */
+.notification-container {
+    padding: 20px;
+}
+
+.notification-section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #b0b3b8;
+    margin-bottom: 10px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.notification-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.notification-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #00d4ff;
+    object-fit: cover;
+}
+
+.notification-content {
+    flex: 1;
+    font-size: 16px;
+}
+
+.notification-content .name {
+    font-weight: bold;
+    color: #00d4ff;
+}
+.notification-content .text {
+    margin: 0;
+}
+.notification-content .time {
+    font-size: 12px;
+    color: #b0b3b8;
+    margin-top: 5px;
+}
+
+.emoji {
+    font-size: 20px;
+    margin-left: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+        <img src="logo.png" alt="Logo">
+        <h1>CSTbook</h1>
+    </div>
+
+    <div class="nav">
+        <div class="icon-wrapper">
+            <a href="home.html">
+                <img src="icon/h.png" alt="Home">
+            </a>
+            <span class="tooltip">Home</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="friends.html">
+                <img src="icon/f.png" alt="Friend">
+            </a>
+            <span class="tooltip">Friends</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="notifications.html">
+                <img src="icon/n.png" alt="Notification">
+            </a>
+            <span class="tooltip">Notifications</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="settings.html">
+                <img src="icon/s.png" alt="Settings">
+            </a>
+            <span class="tooltip">Settings</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="profile.html">
+                <img src="icon/p.png" alt="Profile">
+            </a>
+            <span class="tooltip">Profile</span>
+        </div>
+    </div>
+</div>
+
+<div class="notifications-header">
+    <h2>Notifications</h2>
+</div>
+
+<div class="notification-container">
+    <div class="notification-section-title">Earlier</div>
+    
+    <div class="notification-item">
+        <img src="friend/al_noman.png" alt="AL Noman">
+        <div class="notification-content">
+            <span class="name">AL Noman</span> liked your photo. <span class="emoji">👍</span>
+        </div>
+    </div>
+
+    <div class="notification-item">
+        <img src="friend/asaduzzaman_asad.png" alt="Asaduzzaman Asad">
+        <div class="notification-content">
+            <span class="name">Asaduzzaman Asad</span> reacted to your post. <span class="emoji">❤</span>
+        </div>
+    </div>
+    <div class="notification-item">
+        <img src="friend/emran_munsi.png" alt="Emran Munsi">
+        <div class="notification-content">
+            <span class="name">Emran Munsi</span> reacted to your post. <span class="emoji">👍</span>
+        </div>
+    </div>
+
+    <div class="notification-item">
+        <img src="friend/emon_alam.png" alt="Emon Alam">
+        <div class="notification-content">
+            <span class="name">Emon Alam</span> liked your post. <span class="emoji">👍</span>
+        </div>
+    </div>
+
+    <div class="notification-item">
+        <img src="friend/md_naiem.png" alt="Md Naiem">
+        <div class="notification-content">
+            <span class="name">Md Naiem</span> commented on your photo.
+        </div>
+    </div>
+
+    <div class="notification-item">
+        <img src="friend/আবেদ_শেখ.png" alt="আবেদ শেখ">
+        <div class="notification-content">
+            <span class="name">আবেদ শেখ</span> reacted to your post. <span class="emoji">😂</span>
+        </div>
+    </div>
+
+    <div class="notification-item">
+        <img src="friend/sinha_mim.png" alt="Sinha Mim">
+        <div class="notification-content">
+            <span class="name">Sinha Mim</span> liked your comment. <span class="emoji">👍</span>
+        </div>
+    </div>
+
+    <div class="notification-item">
+        <img src="friend/ashik_chowdhury.png" alt="Ashik Chowdhury">
+        <div class="notification-content">
+            <span class="name">Ashik Chowdhury</span> commented on your photo.
+        </div>
+    </div>
+
+    <div class="notification-item">
+        <img src="friend/bhupoti_kumar_roy.png" alt="Bhupoti Kumar Roy">
+        <div class="notification-content">
+            <span class="name">Bhupoti Kumar Roy</span> reacted to your comment. <span class="emoji">😮</span>
+        </div>
+    </div>
+    
+    <div class="notification-item">
+        <img src="friend/abu_rahat_bayezid.png" alt="Abu Rahat Bayezid">
+        <div class="notification-content">
+            <span class="name">Abu Rahat Bayezid</span> liked your photo. <span class="emoji">👍</span>
+        </div>
+    </div>
+    
+    <div class="notification-item">
+        <img src="friend/samiul_islam_razon.png" alt="Samiul Islam Razon">
+        <div class="notification-content">
+            <span class="name">Samiul Islam Razon</span> reacted to your post. <span class="emoji">😡</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

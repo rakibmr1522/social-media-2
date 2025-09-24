@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>CSTbook Premium Profile</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #e4e6eb;
+}
+
+/* ===== Header ===== */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px 50px;
+    background: rgba(32,34,37,0.95);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+/* ===== Logo ===== */
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo img {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,200,255,0.7);
+}
+.logo h1 {
+    font-size: 28px;
+    margin: 0;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00d4ff, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    user-select: none;
+}
+
+/* ===== Center Icons ===== */
+.nav {
+    display: flex;
+    gap: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.icon-wrapper img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s, filter 0.3s;
+    filter: brightness(0) saturate(100%) invert(57%) sepia(0%) saturate(0%) hue-rotate(174deg) brightness(57%) contrast(89%);
+}
+.icon-wrapper img:hover {
+    transform: scale(1.2);
+    filter: brightness(0) saturate(100%) invert(67%) sepia(87%) saturate(2972%) hue-rotate(179deg) brightness(102%) contrast(105%);
+}
+
+/* Tooltip */
+.tooltip {
+    visibility: hidden;
+    width: max-content;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 8px;
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+.icon-wrapper:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ===== Profile Section ===== */
+.profile-section {
+    padding: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 3px solid #00d4ff;
+    box-shadow: 0 0 15px rgba(0,200,255,0.7);
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-info h2 {
+    margin: 0 0 5px;
+    font-size: 24px;
+    color: #00d4ff;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.profile-stats div {
+    text-align: center;
+}
+
+.profile-stats span {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile-stats p {
+    margin: 0;
+    font-size: 14px;
+    color: #b0b3b8;
+}
+
+.profile-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.profile-buttons button {
+    flex-grow: 1;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-buttons .edit-btn {
+    background: #007bff;
+    color: #fff;
+}
+
+.profile-buttons .share-btn {
+    background: #444;
+    color: #e4e6eb;
+}
+
+.profile-buttons .edit-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+.profile-buttons .share-btn:hover {
+    background: #666;
+    transform: translateY(-2px);
+}
+
+/* ===== Posts Section - Vertical Layout ===== */
+.posts-section {
+    margin-top: 20px;
+    /* Removed margin: -20px to contain within the parent box */
+}
+
+.posts-grid {
+    display: flex;
+    flex-direction: column; /* পোস্টগুলো একটির নিচে একটি করে আসবে */
+    gap: 20px; /* পোস্টগুলোর মধ্যে দূরত্ব */
+}
+
+.post-item {
+    width: 100%; /* প্রতিটি পোস্ট পুরো প্রস্থ জুড়ে থাকবে */
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #00d4ff;
+}
+
+.post-header h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #00d4ff;
+}
+
+.post-header p {
+    margin: 0;
+    font-size: 14px;
+    color: #b0b3b8;
+}
+
+.post-content img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.post-content p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #dcdcdc;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+        <img src="logo.png" alt="CSTbook Logo">
+        <h1>CSTbook</h1>
+    </div>
+
+    <div class="nav">
+        <div class="icon-wrapper">
+            <a href="home.html">
+                <img src="icon/h.png" alt="Home">
+            </a>
+            <span class="tooltip">Home</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="friends.html">
+                <img src="icon/f.png" alt="Friend">
+            </a>
+            <span class="tooltip">Friends</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="notifications.html">
+                <img src="icon/n.png" alt="Notification">
+            </a>
+            <span class="tooltip">Notifications</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="settings.html">
+                <img src="icon/s.png" alt="Settings">
+            </a>
+            <span class="tooltip">Settings</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="profile.html">
+                <img src="icon/p.png" alt="Profile">
+            </a>
+            <span class="tooltip">Profile</span>
+        </div>
+    </div>
+</div>
+
+<div class="profile-section">
+    <div class="profile-header">
+        <img src="rakib.png" alt="Profile Picture of Rakib">
+        <div class="profile-info">
+            <h2>Rakibul Hasan</h2>
+            <div class="profile-stats">
+                <div><span>8</span><p>posts</p></div>
+                <div><span>50</span><p>followers</p></div>
+                <div><span>76</span><p>following</p></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="profile-buttons">
+        <button class="edit-btn">Edit profile</button>
+        <button class="share-btn">Share profile</button>
+    </div>
+
+    <div class="posts-section">
+        <h3>My Posts</h3>
+        <div class="posts-grid">
+            <div class="post-item">
+                <div class="post-header">
+                    <img src="rakib.png" alt="Rakib's Profile Picture in Post">
+                    <div>
+                        <h4>Rakibul Hasan</h4>
+                        <p>1h ago</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>কিছুটা অতীতে ফিরে গেছি 📮</p>
+                    <img src="postp/post_1.png" alt="My Post 1">
+                </div>
+            </div>
+            
+            <div class="post-item">
+                <div class="post-header">
+                    <img src="rakib.png" alt="Rakib's Profile Picture in Post">
+                    <div>
+                        <h4>Rakibul Hasan</h4>
+                        <p>2h ago</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>এই লোগোটা বানাইতে যেয়ে আমার চার ঘন্টা লেগে গেছে 🤕
+</p>
+                    <img src="postp/post_2.png" alt="My Post 2">
+                </div>
+            </div>
+
+            <div class="post-item">
+                <div class="post-header">
+                    <img src="rakib.png" alt="Rakib's Profile Picture in Post">
+                    <div>
+                        <h4>Rakibul Hasan</h4>
+                        <p>3h ago</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>ঘুরতে যাওয়ার মজাই আলাদা 🔆
+</p>
+                    <img src="postp/post_3.png" alt="My Post 3">
+                </div>
+            </div>
+
+            <div class="post-item">
+                <div class="post-header">
+                    <img src="rakib.png" alt="Rakib's Profile Picture in Post">
+                    <div>
+                        <h4>Rakibul Hasan</h4>
+                        <p>4h ago</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Novotheatre সৌরজগৎ দেখে ৫০০ টাকার বাঁশ দিয়ে বসে আছি 🌌
+</p>
+                    <img src="postp/post_4.png" alt="My Post 4">
+                </div>
+            </div>
+     <div class="post-item">
+                <div class="post-header">
+                    <img src="rakib.png" alt="Rakib's Profile Picture in Post">
+                    <div>
+                        <h4>Rakibul Hasan</h4>
+                        <p>1d ago</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Novotheatre Bangladesh Military Museum পুরাই অসাধারণ 🤒
+</p>
+                    <img src="postp/post_5.png" alt="My Post 5">
+                </div>
+            </div>
+     <div class="post-item">
+                <div class="post-header">
+                    <img src="rakib.png" alt="Rakib's Profile Picture in Post">
+                    <div>
+                        <h4>Rakibul Hasan</h4>
+                        <p>5d ago</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>জিয়া মামার কবর ঘুরে আসলাম 😁
+</p>
+                    <img src="postp/post_6.png" alt="My Post 6">
+                </div>
+            </div>
+     <div class="post-item">
+                <div class="post-header">
+                    <img src="rakib.png" alt="Rakib's Profile Picture in Post">
+                    <div>
+                        <h4>Rakibul Hasan</h4>
+                        <p>4h ago</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Novotheatre এইটা কলেজে মারতে হবে 🥴
+</p>
+                    <img src="postp/post_7.png" alt="My Post 7">
+                </div>
+            </div>
+     <div class="post-item">
+                <div class="post-header">
+                    <img src="rakib.png" alt="Rakib's Profile Picture in Post">
+                    <div>
+                        <h4>Rakibul Hasan</h4>
+                        <p>4h ago</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>সব দেশের ভিতর ✌
+</p>
+                    <img src="postp/post_8.png" alt="My Post 8">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
