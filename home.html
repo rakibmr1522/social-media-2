@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>CSTbook Home</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #e4e6eb;
+}
+
+/* ===== Main Header (All Pages) ===== */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px 50px;
+    background: rgba(32,34,37,0.95);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+/* ===== Logo ===== */
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo img {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,200,255,0.7);
+}
+.logo h1 {
+    font-size: 28px;
+    margin: 0;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00d4ff, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    user-select: none;
+}
+
+/* ===== Center Icons ===== */
+.nav {
+    display: flex;
+    gap: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.icon-wrapper img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s, filter 0.3s;
+    filter: brightness(0) saturate(100%) invert(57%) sepia(0%) saturate(0%) hue-rotate(174deg) brightness(57%) contrast(89%);
+}
+.icon-wrapper img:hover {
+    transform: scale(1.2);
+    filter: brightness(0) saturate(100%) invert(67%) sepia(87%) saturate(2972%) hue-rotate(179deg) brightness(102%) contrast(105%);
+}
+
+/* Tooltip */
+.tooltip {
+    visibility: hidden;
+    width: max-content;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 8px;
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+.icon-wrapper:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ===== Home Page Feed ===== */
+.feed-container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+.post-item {
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.post-header .user-info {
+    display: flex;
+    align-items: center;
+}
+.post-header .user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid #00d4ff;
+    object-fit: cover;
+}
+.post-header .user-info h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #00d4ff;
+}
+.post-header .user-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #b0b3b8;
+}
+.post-header .three-dots img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(57%) sepia(0%) saturate(0%) hue-rotate(174deg) brightness(57%) contrast(89%);
+}
+.post-content img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 15px;
+}
+.post-actions .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #b0b3b8;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.post-actions .action-btn:hover {
+    color: #00d4ff;
+}
+.post-actions .action-btn img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) saturate(100%) invert(57%) sepia(0%) saturate(0%) hue-rotate(174deg) brightness(57%) contrast(89%);
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+        <img src="logo.png" alt="Logo">
+        <h1>CSTbook</h1>
+    </div>
+
+    <div class="nav">
+        <div class="icon-wrapper">
+            <a href="home.html">
+                <img src="icon/h.png" alt="Home">
+            </a>
+            <span class="tooltip">Home</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="friends.html">
+                <img src="icon/f.png" alt="Friend">
+            </a>
+            <span class="tooltip">Friends</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="notifications.html">
+                <img src="icon/n.png" alt="Notification">
+            </a>
+            <span class="tooltip">Notifications</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="settings.html">
+                <img src="icon/s.png" alt="Settings">
+            </a>
+            <span class="tooltip">Settings</span>
+        </div>
+        <div class="icon-wrapper">
+            <a href="profile.html">
+                <img src="icon/p.png" alt="Profile">
+            </a>
+            <span class="tooltip">Profile</span>
+        </div>
+    </div>
+</div>
+
+<div class="feed-container">
+    
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/al_noman.png" alt="AL Noman">
+                <div>
+                    <h4>AL Noman</h4>
+                    <p>15m ago</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>মামা কুয়াকাটা আইছি 👻</p>
+            <img src="post/post_1.png" alt="Post Image 1">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+<div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/emran_munsi.png" alt="Emran Munsi">
+                <div>
+                    <h4>Emran Munsi</h4>
+                    <p>August 28, 2024</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>জীবন যেন কাশফুলের মত শুভ্র</p>
+            <img src="post/post_11.png" alt="Post Image 2">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/asaduzzaman_asad.png" alt="Asaduzzaman Asad">
+                <div>
+                    <h4>Asaduzzaman Asad</h4>
+                    <p>30m ago</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>আজকের আবহাওয়া খুব সুন্দর!</p>
+            <img src="post/post_2.png" alt="Post Image 2">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/emon_alam.png" alt="Emon Alam">
+                <div>
+                    <h4>Emon Alam</h4>
+                    <p>September 5, 2024</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>আজ কলেজের প্রথম দিন☺️</p>
+            <img src="post/post_3.png" alt="Post Image 3">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/md_naiem.png" alt="Md Naiem">
+                <div>
+                    <h4>Md Naiem</h4>
+                    <p>july 4</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>GPI কম্পিউটার সাইন্স এবং প্রযুক্তি বিভাগের  সেমিনার শেষে কিছু মুহূর্ত, যা রয়ে যাবে হৃদয়ে ✨"</p>
+            <img src="post/post_4.png" alt="Post Image 4">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/আবেদ_শেখ.png" alt="আবেদ শেখ">
+                <div>
+                    <h4>আবেদ শেখ</h4>
+                    <p>November 1, 2023</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>আমি হাঁকার 😁</p>
+            <img src="post/post_5.png" alt="Post Image 5">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/sinha_mim.png" alt="Sinha Mim">
+                <div>
+                    <h4>Sinha Mim</h4>
+                    <p>June 30</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>Uss 🥹🫶👀</p>
+            <img src="post/post_6.png" alt="Post Image 6">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/ashik_chowdhury.png" alt="Ashik Chowdhury">
+                <div>
+                    <h4>Ashik Chowdhury</h4>
+                    <p>January 23</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>অতীতের কিছু বন্ধু দের সাথে ❤</p>
+            <img src="post/post_7.png" alt="Post Image 7">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/bhupoti_kumar_roy.png" alt="Bhupoti Kumar Roy">
+                <div>
+                    <h4>Bhupoti Kumar Roy</h4>
+                    <p>june 10</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>প্রচন্ড এক রোদে !</p>
+            <img src="post/post_8.png" alt="Post Image 8">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/esfar_rahman.png" alt="Esfar Rahmun">
+                <div>
+                    <h4>Esfar Rahmun</h4>
+                    <p>june 20</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>২জন লিজেন্ড Esfar Rahman ও Farabi Jubayer  সাথে আমি ছোট একজন 😅</p>
+            <img src="post/post_12.png" alt="Post Image 12">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/abu_rahat_bayezid.png" alt="Abu Rahat Bayezid">
+                <div>
+                    <h4>Abu Rahat Bayezid</h4>
+                    <p>7d ago</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>অপেক্ষার দীর্ঘ ছায়ায়ও ভালোবাসা ফোটে...🥀</p>
+            <img src="post/post_9.png" alt="Post Image 9">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="post-item">
+        <div class="post-header">
+            <div class="user-info">
+                <img src="friend/samiul_islam_razon.png" alt="Samiul Islam Razon">
+                <div>
+                    <h4>Samiul Islam Razon</h4>
+                    <p>29d ago</p>
+                </div>
+            </div>
+            <div class="three-dots">
+                <img src="3d.png" alt="Options">
+            </div>
+        </div>
+        <div class="post-content">
+            <p>বড় ভাইদের সাথে বসতে পেরে নিজেকে ধন্য মনে হচ্ছে.🙂</p>
+            <img src="post/post_10.png" alt="Post Image 10">
+        </div>
+        <div class="post-actions">
+            <div class="action-btn">
+                <img src="lcs/like.png" alt="Like">
+                <span>Like</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/comment.png" alt="Comment">
+                <span>Comment</span>
+            </div>
+            <div class="action-btn">
+                <img src="lcs/share.png" alt="Share">
+                <span>Share</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
